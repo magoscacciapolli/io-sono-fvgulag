@@ -1,238 +1,527 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Io sono Friuli Venezia Gulag</title>
-<style>
-:root{--gold:#c9a227;--blue:#1a3b6d;--ink:#1f2530;--paper:#faf7ef;--line:#e4ddc9;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:var(--ink);font-size:15px}
-header{border-bottom:1px solid #eee;padding:.9rem 1.4rem;padding-top:calc(.9rem + env(safe-area-inset-top,0px));
-  display:flex;justify-content:space-between;align-items:center;gap:.6rem;position:sticky;top:0;background:#fff;z-index:9}
-.hleft{display:flex;align-items:center;gap:1rem}
-.logo{font-weight:800;letter-spacing:.03em;color:var(--blue);font-size:1.05rem}
-.logo b{color:var(--gold)}
-.cta{background:var(--blue);color:#fff!important;padding:.55rem 1.1rem;border-radius:2px;font-size:.78rem;text-decoration:none;font-weight:bold}
-#menuBtn{display:flex;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;font-family:inherit;font-size:.75rem;color:var(--ink);padding:0}
-.bars{width:22px;height:16px;position:relative;display:inline-block}
-.bars span{position:absolute;left:0;width:100%;height:2px;background:var(--ink)}
-.bars span:nth-child(1){top:0}.bars span:nth-child(2){top:7px}.bars span:nth-child(3){top:14px}
-.dropdown{position:absolute;top:100%;left:1.4rem;background:#fff;border:1px solid #eee;border-top:2px solid var(--gold);
-  box-shadow:0 8px 20px rgba(0,0,0,.08);display:none;flex-direction:column;min-width:220px;z-index:20;border-radius:0 0 4px 4px}
-.dropdown.open{display:flex}
-.dropdown a{padding:.7rem 1.1rem;color:#333;text-decoration:none;font-size:.85rem;border-bottom:1px solid #f2f2f2}
-.dropdown a:last-child{border-bottom:none}
-.dropdown a:hover{color:var(--blue);background:#faf8f2}
-.hero{text-align:center;padding:2.6rem 1.2rem 1.4rem}
-.hero h1{font-family:Georgia,serif;font-weight:normal;font-size:clamp(1.8rem,5vw,2.9rem);margin:0;letter-spacing:.03em;color:var(--ink)}
-.hero h1 .g{color:var(--gold)}
-.quote{font-style:italic;font-size:1.05rem;margin:1rem auto .3rem;max-width:600px;color:#333}
-.readmore{font-size:.8rem;color:var(--blue);text-decoration:underline;display:block;margin-bottom:1.6rem}
-main{max-width:880px;margin:0 auto;padding:0 1.4rem}
-p{line-height:1.7;font-size:.95rem;color:#2a2f38}
-.center{text-align:center}
-.strong-quote{font-weight:bold;text-align:center;font-size:1.05rem;margin:1.6rem 0;line-height:1.5}
-.wall{margin:1.6rem auto;max-width:720px;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
-.wall svg{display:block;width:100%;height:auto}
-.section-title{font-weight:800;letter-spacing:.02em;color:var(--ink);margin:2rem 0 .6rem;font-size:1.05rem}
-.cols{display:flex;gap:1.4rem;flex-wrap:wrap;margin:1.2rem 0 1.8rem}
-.col{flex:1;min-width:230px}
-.col h3{font-size:.85rem;letter-spacing:.04em;color:var(--blue);margin-bottom:.5rem}
-.col p{font-size:.85rem}
-.thumb{background:repeating-linear-gradient(135deg,#dcd6c0,#dcd6c0 8px,#e9e4d3 8px,#e9e4d3 16px);
-  height:80px;border-radius:3px;margin-top:.6rem;display:flex;align-items:center;justify-content:center;color:#8a8265;font-size:.75rem}
-.ctarow{text-align:center;margin:1.4rem 0 2.2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.stat{background:var(--blue);color:#fff;text-align:center;padding:2.4rem 1.4rem;margin:0 -1.4rem}
-.stat h3{font-size:1.6rem;margin:0 0 .8rem;color:var(--gold)}
-.stat p{color:#eee;max-width:640px;margin:0 auto .4rem}
-.stat .ctarow a{background:var(--gold);color:var(--blue)}
-.qr{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;margin:2rem 0}
-.qr .box{width:110px;height:110px;background:repeating-conic-gradient(#222 0 25%,#fff 0 50%) 0/16px 16px;flex:none;border-radius:3px}
-.list-row{display:flex;gap:1rem;overflow-x:auto;padding:1rem 0 1.4rem}
-.list-row .item{flex:none;width:160px;font-size:.8rem;color:#333}
-.list-row .item .thumb{height:100px}
-table.reg{width:100%;border-collapse:collapse;font-size:.85rem;margin:1rem 0 2rem}
-table.reg td{padding:.5rem .2rem;border-bottom:1px solid var(--line)}
-table.reg td.loc{color:#777}
-footer{border-top:1px solid #eee;padding:2rem 1.4rem calc(2rem + env(safe-area-inset-bottom,0px));text-align:center}
-footer .fnav{display:flex;justify-content:center;gap:1.1rem;flex-wrap:wrap;font-size:.82rem;margin-bottom:1.2rem}
-footer .fnav a{color:#333;text-decoration:none}
-footer .fnav a:hover{color:var(--blue)}
-.partners{display:flex;justify-content:center;gap:1.6rem;flex-wrap:wrap;margin-bottom:1.2rem;opacity:.6;font-size:.7rem}
-.fine{font-size:.72rem;color:#888}
-.disclaimer{background:#fff3d6;border-bottom:1px dashed var(--gold);color:#6b5410;
-  font-size:.72rem;text-align:center;padding:.5rem 1rem}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--paper:#20242c}
-  body{background:#15181e;color:#e8e6dd}
-  header,footer{background:#1b1f27;border-color:#333}
-  nav.menu a{color:#ccc}
-  p{color:#d8d6cd}
-}
-</style>
+<!--[if lt IE 7]><html class='no-js lt-ie9 lt-ie8 lt-ie7' xml:lang='it' lang='it'><![endif]-->
+<!--[if IE 7]><html class='no-js lt-ie9 lt-ie8' xml:lang='it' lang='it'><![endif]-->
+<!--[if IE 8]><html class='no-js lt-ie9' xml:lang='it' lang='it'><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xml:lang="it" lang="it"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    
+    <meta name="generator" content="Ikon Author">
+    <meta name="description" content="Sito ufficiale di 'Io Sono Friuli Venezia Gulag', dedicato alla valorizzazione del filo spinato, della retorica istituzionale e della sostenibilità dell'immagine regionale.">
+    
+    
+    <meta name="language" content="it">
+    
+    
+
+    <meta property="og:site_name" content="IO SONO FVG">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Io sono Friuli Venezia Gulag">
+    <meta property="og:url" content="https://www.iosonofvg.it/home">
+        <meta property="og:description" content="Sito ufficiale di 'Io Sono Friuli Venezia Gulag', dedicato alla valorizzazione del filo spinato, della retorica istituzionale e della sostenibilità dell'immagine regionale.">
+    <meta property="og:image" content="https://github.com/magoscacciapolli/io-sono-fvgulag/blob/main/gradiscai.jpg">
+
+
+
+    
+    <link rel="canonical" href="https://www.iosonofvg.it/home">
+    <meta name="google-site-verification" content="4gbA5PoWDHe2Bf5DG1P3TEOZOBsgE4F1oliwk7RpxLU">
+    <meta name="Revisit-After" content="1 DAY">
+    <meta name="IKONROBOT" content="check">
+    <title>
+        
+Io sono Friuli Venezia Gulag        
+    </title>
+
+    <script type="text/javascript" charset="UTF-8" async="" src="Io%20sono%20Friuli%20Venezia%20Giulia_files/state_245C.js"></script><script id="Cookiebot" data-culture="it" src="Io%20sono%20Friuli%20Venezia%20Giulia_files/uc_245C.js" data-cbid="ed8d5ed7-7790-4520-b16f-ca504cad4393" data-blockingmode="auto" type="text/javascript"></script><style type="text/css" id="CookieConsentStateDisplayStyles">.cookieconsent-optin,.cookieconsent-optin-preferences,.cookieconsent-optin-statistics,.cookieconsent-optin-marketing{display:block;display:initial;}.cookieconsent-optout-preferences,.cookieconsent-optout-statistics,.cookieconsent-optout-marketing,.cookieconsent-optout{display:none;}</style>
+
+    <!-- all CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="Io%20sono%20Friuli%20Venezia%20Giulia_files/css2_245C.css" rel="stylesheet">
+
+    
+        <link href="Io%20sono%20Friuli%20Venezia%20Giulia_files/css_main_245C.css" rel="stylesheet">
+
+    
+    
+
+    
+    <!--[if lt IE 9]>
+        <script src="/Scripts/modernizr-2.8.3.js"></script>
+        <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.iosonofvg.it/Content/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.iosonofvg.it/Content/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.iosonofvg.it/Content/favicons/favicon-16x16.png">
+    <link rel="manifest" href="https://www.iosonofvg.it/Content/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="https://www.iosonofvg.it/Content/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/Content/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Google tag (gtag.js) -->
+    <script src="Io%20sono%20Friuli%20Venezia%20Giulia_files/js_245C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DKDC0HY23F');
+    </script>
+
+    
+    
 </head>
-<body>
+<body class="lang-it home" data-language="it" data-snode="16356" data-rnode="15975" data-cachekey="ModelBuilder_R0_0_1_it_0__snode_/Home_" data-sitemode="|" data-baseurl="/" style="">
 
-<div class="disclaimer">Sito satirico indipendente — parodia grafica a scopo di studio, non affiliato alla Regione Friuli Venezia Giulia.</div>
+    
+    <!--[if lt IE 7]><p class="chromeframe">You are using an outdated browser. <a href="//browsehappy.com/">Upgrade your browser today</a> or <a href="//www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p><![endif]-->
+    
+    
 
-<header>
-  <div class="hleft">
-    <button id="menuBtn" aria-label="apri menu" onclick="document.getElementById('navDrop').classList.toggle('open')">
-      <span class="bars"><span></span><span></span><span></span></span> menu
-    </button>
-  </div>
-  <a class="cta" href="#marchio">richiedi marchio</a>
-</header>
-<nav id="navDrop" class="dropdown">
-  <a href="#">Home</a>
-  <a href="#marchio">Il marchio</a>
-  <a href="#centri">Centri</a>
-  <a href="#trattenuti">Trattenuti</a>
-  <a href="#enti">Enti &amp; Fornitori</a>
-  <a href="#branding">Branding</a>
-  <a href="#contatti">Contatti</a>
-  <a href="#">Iniziative</a>
-</nav>
-
-<section class="hero">
-  <h1>Io sono&nbsp; friuli&nbsp;&nbsp; venezia&nbsp; <span class="g">gulag</span></h1>
-  <p class="quote">"Io trattengo persone la cui origine e destinazione sono garantite riservate"</p>
-  <a class="readmore" href="#marchio">leggi di più</a>
-</section>
-
-<main>
-  <p class="center">IO SONO FRIULI VENEZIA GULAG è il marchio che certifica la gestione delle strutture regionali e la comunicazione dei trattenimenti amministrativi</p>
-
-  <p>Grazie al marchio "Io Sono Friuli Venezia Gulag", oggi puoi riconoscere più facilmente la provenienza di una persona trattenuta nella filiera amministrativa regionale. Su questo sito puoi scoprire l'impegno nella comunicazione istituzionale, nel decoro esterno e nella gestione mediatica della struttura che lo applica. Il marchio distingue anche tutte le iniziative che si impegnano a promuovere quest'idea che da sempre è alla base della nostra retorica.</p>
-
-  <p>Essere Friuli Venezia Gulag vuol dire sentirsi parte di una comunità che vive accanto a un muro piccolo ma ricco di telecamere, filo spinato, moduli e comunicati: un patrimonio unico al mondo.</p>
-
-  <p class="strong-quote">"IO SONO FRIULI VENEZIA GULAG"<br>è prima di tutto un modo di comunicare e di derubricare</p>
-
-  <p class="center">Scegli le fonti e le notizie con questo marchio e aiuta la reputazione del Friuli Venezia Giulia a crescere nel segno della trasparenza.</p>
-
-  <div class="wall">
-    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-      <rect width="800" height="300" fill="#cfc9b8"/>
-      <rect y="90" width="800" height="210" fill="#9c9484"/>
-      <g stroke="#7a7362" stroke-width="1">
-        <line x1="0" y1="140" x2="800" y2="140"/><line x1="0" y1="190" x2="800" y2="190"/>
-        <line x1="0" y1="240" x2="800" y2="240"/>
-        <line x1="130" y1="90" x2="130" y2="300"/><line x1="270" y1="90" x2="270" y2="300"/>
-        <line x1="410" y1="90" x2="410" y2="300"/><line x1="550" y1="90" x2="550" y2="300"/>
-        <line x1="690" y1="90" x2="690" y2="300"/>
-      </g>
-      <g stroke="#4a4a4a" stroke-width="2" fill="none">
-        <line x1="0" y1="70" x2="800" y2="70"/>
-        <line x1="0" y1="70" x2="20" y2="55"/><line x1="20" y1="55" x2="8" y2="48"/><line x1="20" y1="55" x2="32" y2="48"/>
-        <line x1="90" y1="70" x2="110" y2="55"/><line x1="110" y1="55" x2="98" y2="48"/><line x1="110" y1="55" x2="122" y2="48"/>
-        <line x1="180" y1="70" x2="200" y2="55"/><line x1="200" y1="55" x2="188" y2="48"/><line x1="200" y1="55" x2="212" y2="48"/>
-        <line x1="270" y1="70" x2="290" y2="55"/><line x1="290" y1="55" x2="278" y2="48"/><line x1="290" y1="55" x2="302" y2="48"/>
-        <line x1="360" y1="70" x2="380" y2="55"/><line x1="380" y1="55" x2="368" y2="48"/><line x1="380" y1="55" x2="392" y2="48"/>
-        <line x1="450" y1="70" x2="470" y2="55"/><line x1="470" y1="55" x2="458" y2="48"/><line x1="470" y1="55" x2="482" y2="48"/>
-        <line x1="540" y1="70" x2="560" y2="55"/><line x1="560" y1="55" x2="548" y2="48"/><line x1="560" y1="55" x2="572" y2="48"/>
-        <line x1="630" y1="70" x2="650" y2="55"/><line x1="650" y1="55" x2="638" y2="48"/><line x1="650" y1="55" x2="662" y2="48"/>
-        <line x1="720" y1="70" x2="740" y2="55"/><line x1="740" y1="55" x2="728" y2="48"/><line x1="740" y1="55" x2="752" y2="48"/>
-      </g>
-      <rect y="0" width="800" height="70" fill="#dfe6ea"/>
-    </svg>
-  </div>
-
-  <p class="center">Un'idea semplice che si sviluppa in un sistema efficiente rendendo protagonista un'intera regione:</p>
-
-  <div class="section-title" id="marchio">MARCHIO STRUTTURA &amp; SERVIZI</div>
-  <div class="cols">
-    <div class="col">
-      <p>Il marchio dorato viene conferito alle <b>strutture</b> del Friuli Venezia Giulia che si impegnano nella <b>COMUNICAZIONE istituzionale, nel decoro esterno e nella gestione mediatica</b> del perimetro.</p>
-      <h3 id="centri">Strutture regionali impegnate nella narrazione istituzionale</h3>
-      <div class="thumb">senza foto</div>
+    
+    <header class="c-header c-header--top">
+        <div class="c-header__container">
+            <button class="c-header__openmenu js-toggleMenu" title="menu">menu</button>
+            <a href="https://www.iosonofvg.it/" class="c-header__logo"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo_245C.svg" alt="IO SONO FVG"></a>
+            <a href="https://www.iosonofvg.it/richiedi-marchio" class="c-header__richiedimarchio o-button o-button--secondary o-button--small">richiedi marchio</a>
+        </div>
+    </header>
+    <header class="c-header c-header--scrolled">
+        <div class="c-header__container">
+            <button class="c-header__openmenu js-toggleMenu" title="menu">menu</button>
+            <a href="https://www.iosonofvg.it/" class="c-header__logo"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo_245C.svg" alt="IO SONO FVG"></a>
+            <a href="https://www.iosonofvg.it/richiedi-marchio" class="c-header__richiedimarchio o-button o-button--secondary o-button--small">richiedi marchio</a>
+        </div>
+    </header>
+    <div class="c-mainmenu">
+        <button class="c-mainmenu__closemenu js-toggleMenu" title="close"></button>
+        <ul class="c-mainmenu__menu">
+  <li class="idx_1_1 isLeaf">
+    <a href="https://www.iosonofvg.it/home" class="selected">Home</a>
+  </li>
+  <li class="idx_1_2 isLeaf">
+    <a href="https://www.iosonofvg.it/il-marchio">Il marchio</a>
+  </li>
+  <li class="idx_1_3 isLeaf">
+    <a href="https://www.iosonofvg.it/aziende">Aziende</a>
+  </li>
+  <li class="idx_1_4 isLeaf">
+    <a href="https://www.iosonofvg.it/prodotti">Prodotti</a>
+  </li>
+  <li class="idx_1_5 isLeaf">
+    <a href="https://www.iosonofvg.it/rivenditori-e-ristoranti">Ristoranti &amp; Rivenditori</a>
+  </li>
+  <li class="idx_1_6 isLeaf">
+    <a href="https://www.iosonofvg.it/branding">Branding</a>
+  </li>
+  <li class="idx_1_7 isLeaf">
+    <a href="https://www.iosonofvg.it/contatti">Contatti</a>
+  </li>
+  <li class="idx_1_8 isLeaf">
+    <a href="https://www.iosonofvg.it/it/18544/iniziative">Iniziative</a>
+  </li>
+  <li class="idx_1_9 isLeaf">
+    <a href="https://www.iosonofvg.it/shop-per-aziende-io-sono-fvg">Shop per aziende</a>
+  </li>
+</ul>
     </div>
-    <div class="col">
-      <h3>Servizi di ufficio stampa e comunicati con copertura locale</h3>
-      <div class="thumb">senza foto</div>
+
+
+
+
+    
+    <div class="c-hero isCampagna">
+            <picture class="c-hero__image">
+                <source srcset="https://raw.githubusercontent.com/magoscacciapolli/io-sono-fvgulag/main/gradiscai.jpg 1x" media="(max-width: 768px)">
+                <img srcset="https://raw.githubusercontent.com/magoscacciapolli/io-sono-fvgulag/main/gradiscai.jpg 1x" alt="">
+            </picture>
+
+    <div class="c-hero__texts">
+
+            <h1 class="c-hero__title">
+                Io sono <br>friuli <br>
+                venezia <br>gulag
+            </h1>
+            <h2 class="c-hero__subtitle">
+                “Io acquisto prodotti la cui origine regionale e sostenibilità sono garantite”
+            </h2>
+        <a href="#" class="c-hero__button o-button o-button--downarrow js-scrollToContent">leggi di più</a>
     </div>
-  </div>
-
-  <div class="section-title">MARCHIO TRATTENUTO</div>
-  <div class="cols">
-    <div class="col" id="trattenuti">
-      <p>Il marchio blu si trova sulle <b>pratiche</b> delle persone trattenute in Friuli Venezia Giulia dalla <b>FILIERA BUROCRATICA TRACCIABILE</b>. Il marchio è sempre abbinato a un modulo attraverso il quale si può scoprire, con qualche mese di ritardo, da dove vengono le persone.</p>
-      <h3>Pratiche tracciabili che informano l'opinione pubblica con comunicati ufficiali</h3>
-      <div class="thumb">senza foto</div>
     </div>
-  </div>
 
-  <div class="section-title" id="branding">MARCHIO BRANDING</div>
-  <div class="cols">
-    <div class="col">
-      <p>Il marchio figurativo viene concesso a tutti coloro che con le loro iniziative condividono, promuovono e rafforzano i principi che stanno alla base del Marchio collettivo.</p>
-      <h3>Iniziative che rafforzano il valore del marchio</h3>
-      <div class="thumb">senza foto</div>
+    
+    <div class="c-headerplaceholder"></div>
+    
+    
+    
+    <div class="clearfloat"></div>
+        <section class="c-homemarchio o-section">
+            <div class="c-homemarchio__container l-container">
+                <p class="c-homemarchio__intro l-innercontainer">
+                    
+                    IO SONO FRIULI VENEZIA GIULIA è il marchio che testimonia la sostenibilità delle imprese regionali e l’origine delle produzioni  agroalimentari
+                </p>
+                <br>
+                <p class="c-homemarchio__text">
+                    
+
+                    Grazie al marchio “Io Sono Friuli Venezia Giulia”, oggi puoi riconoscere più facilmente l’origine di un prodotto della filiera agroalimentare regionale. Su questo sito puoi scoprire l’impegno nella sostenibilità ambientale, economica e sociale dell’azienda che lo produce.
+                    Il marchio distingue anche tutte le iniziative che si impegnano a promuovere quest’idea che da sempre è alla base della nostra cultura. <br>
+                    <br>
+                    Essere Friuli Venezia Giulia vuol dire sentirsi parte di una comunità che vive in una terra piccola ma ricca di persone, risorse, qualità, saperi e tradizioni: un patrimonio unico al mondo. <br>
+                    <br>
+                    “IO SONO FRIULI VENEZIA GULAG” <br>
+                    è prima di tutto un modo di essere e di pensare <br>
+                    <br>
+                    Scegli le aziende e i prodotti con questo marchio e aiuta l’economia del Friuli Venezia Giulia a crescere nel segno della sostenibilità. <br>
+                </p>
+                <br>
+                <br>
+                <video controls="controls" style="width:100%">
+                    <source src="Io%20sono%20Friuli%20Venezia%20Giulia_files/campagna-576_245C.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+    <section class="c-homemarchio o-section">
+        <div class="c-homemarchio__container l-container">
+            <p class="c-homemarchio__intro l-innercontainer">
+                
+                Un’idea semplice che si sviluppa in un sistema innovativo rendendo protagonista un’intera regione:
+            </p>
+            <div class="c-homemarchio__items">
+                <div class="c-homemarchio__logoazienda">
+                    <h3>MARCHIO AZIENDA &amp; SERVIZI</h3>
+                    <p>
+                        Il marchio dorato viene conferito alle <strong>imprese</strong> del Friuli Venezia Giulia che si impegnano nella
+                        <strong>SOSTENIBILITÀ ambientale, economica e sociale.</strong>
+                    </p>
+                    <div class="c-homemarchio__logocontainer">
+                        <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-azienda_245C.svg" alt="Logo marchio azienda">
+                    </div>
+                </div>
+                <a href="https://www.iosonofvg.it/aziende" class="c-homemarchio__item">
+                    <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/img-1_245C.jpg" alt="">
+                    <span>
+                        Aziende agroalimentari
+                        impegnate nella sostenibilità
+                    </span>
+                </a>
+                <a href="https://www.iosonofvg.it/rivenditori-e-ristoranti" class="c-homemarchio__item">
+                    <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/img-2_245C.jpg" alt="">
+                    <span>
+                        Servizi di rivendita e ristorazione
+                        con fornitura locale
+                    </span>
+                </a>
+            </div>
+            <div class="c-homemarchio__items">
+                <div class="c-homemarchio__logoprodotto">
+                    <h3>MARCHIO PRODOTTO</h3>
+                    <p>
+                        Il marchio blu si trova sui <strong>prodotti</strong> di imprese del Friuli Venezia Giulia dalla <strong>FILIERA TRACCIABILE</strong>.
+                        Il marchio è sempre abbinato ad un QR-code attraverso il quale si può scoprire da dove vengono le materie prime.
+                    </p>
+                    <div class="c-homemarchio__logocontainer">
+                        <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-prodotto_245C.svg" alt="Logo marchio prodotto">
+                    </div>
+                </div>
+                <a href="https://www.iosonofvg.it/prodotti" class="c-homemarchio__item">
+                    <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/img-3_002_245C.jpg" alt="">
+                    <span>
+                        Prodotti tracciabili che informano il consumatore con il QR-CODE
+                    </span>
+                </a>
+                <div class="c-homemarchio__logobranding">
+                    <h3>MARCHIO BRANDING</h3>
+                    <p>
+                        Il marchio figurativo viene concesso a tutti coloro che con le loro iniziative condividono, promuovono e rafforzano i principi che stanno alla base del Marchio collettivo.
+                        <br>
+                        <br>
+                    </p>
+                    <div class="c-homemarchio__logocontainer">
+                        <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-testuale-quadrato_002_245C.svg" alt="Logo Branding" height="128">
+                    </div>
+                </div>
+                <a href="https://www.iosonofvg.it/branding" class="c-homemarchio__item">
+                    <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/img-4_245C.jpg" alt="">
+                    <span>
+                        Iniziative che rafforzano il valore del marchio
+                    </span>
+                </a>
+            </div>
+            <div class="c-homemarchio__buttons">
+                <a href="https://www.iosonofvg.it/richiedi-marchio" class="o-button o-button--secondary">richiedi marchio</a>
+                <a href="https://www.iosonofvg.it/il-marchio" class="o-button">leggi di più</a>
+            </div>
+        </div>
+    </section>
+            <section class="c-homeaziende o-section">
+            <div class="c-homeaziende__container l-container l-innercontainer">
+                <h3 class="c-homeaziende__title"><span>526</span> aziende con il marchio “IO SONO FVG”. </h3>
+                <p class="c-homeaziende__text">
+                    Già 526 aziende si sono impegnate nella sostenibilità per ottenere il marchio “IO SONO FVG”. <br> <br>
+                    Hai un’azienda che opera nell’agroalimentare in Friuli Venezia Giulia? Se ti impegni nella sostenibilità ambientale, economica e sociale anche tu puoi avere il marchio “IO SONO FVG”.
+                </p>
+                <div class="c-homeaziende__buttons">
+                    <a href="https://www.iosonofvg.it/aziende" class="o-button o-button--lightbg-secondary">TUTTE LE AZIENDE CON IL MARCHIO</a>
+                    <a href="https://www.agrifoodfvg.it/personalarea" class="o-button o-button--secondary">RICHIEDI IL MARCHIO PER LA TUA AZIENDA</a>
+                </div>
+            </div>
+        </section>
+
+
+    <section class="c-homeqrcode o-section">
+        <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/qrcode-scan_245C.jpg" alt="Scan Qr Code" class="c-homeqrcode__image">
+        <div class="c-homeqrcode__container l-container l-innercontainer">
+            <p class="c-homeqrcode__text">
+                Cerca il Marchio sui prodotti. Inquadra <br>
+                il <strong>QR-CODE</strong> abbinato per scoprire da dove <br>
+                vengono le materie prime e conoscere l’impegno <br>
+                dell’azienda produttrice verso il territorio.
+            </p>
+        </div>
+    </section>
+            <section class="c-homeprodotti o-section">
+            <div class="c-homeprodotti__container l-container l-innercontainer">
+                <div class="c-homeprodotti__header">
+                    <p class="c-homeprodotti__headertext">
+                        I prodotti marchiati:
+                    </p>
+                    <a href="https://www.iosonofvg.it/prodotti" class="c-homeprodotti__headerbutton o-button">tutti i prodotti</a>
+                </div>
+                <div class="c-homeprodotti__items o-cardslist">
+<a href="https://www.iosonofvg.it/product/3030" class="o-companycard">
+    <div class="o-companycard__image">
+            <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/Erbe%20in%20polvere_245C.jpg" alt="">
     </div>
-  </div>
+    <div class="o-companycard__texts">
+        <div class="o-companycard__title">Erbe essiccate</div>
+        <div class="o-companycard__text">
+            I Fiori di Mari <br>
+            TRAMONTI DI SOTTO
+        </div>
+    </div>
+</a><a href="https://www.iosonofvg.it/product/2346" class="o-companycard">
+    <div class="o-companycard__image">
+    </div>
+    <div class="o-companycard__texts">
+        <div class="o-companycard__title">ZUCCA IN AGRODOLCE</div>
+        <div class="o-companycard__text">
+            Acero Rosso Società Agricola s.s. <br>
+            Sacile
+        </div>
+    </div>
+</a><a href="https://www.iosonofvg.it/product/2908" class="o-companycard">
+    <div class="o-companycard__image">
+            <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/malvasia%20ruj_245C.png" alt="">
+    </div>
+    <div class="o-companycard__texts">
+        <div class="o-companycard__title">Malvasia</div>
+        <div class="o-companycard__text">
+            Società agricola Ruj <br>
+            Doberdò del Lago
+        </div>
+    </div>
+</a><a href="https://www.iosonofvg.it/product/2442" class="o-companycard">
+    <div class="o-companycard__image">
+            <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/caciotta%20d'Aviano%20al%20rosmarino_245C.png" alt="">
+    </div>
+    <div class="o-companycard__texts">
+        <div class="o-companycard__title">CACIOTTA DAVIANO ROSMARINO</div>
+        <div class="o-companycard__text">
+            Casearia Del Ben S.R.L. <br>
+            Porcia
+        </div>
+    </div>
+</a><a href="https://www.iosonofvg.it/product/2872" class="o-companycard">
+    <div class="o-companycard__image">
+    </div>
+    <div class="o-companycard__texts">
+        <div class="o-companycard__title">SUINO LONZA A FETTE FVG - SKIN</div>
+        <div class="o-companycard__text">
+            Despar Nord <br>
+            Udine
+        </div>
+    </div>
+</a>                    <a href="https://www.iosonofvg.it/prodotti" class="o-card c-homeprodotti__tutti">
+                        Scopri tutti i <br>
+                        1505 prodotti
+                    </a>
+                </div>
+            </div>
+        </section>
 
-  <div class="ctarow">
-    <a class="cta" href="#marchio">richiedi marchio</a>
-    <a class="cta" style="background:#eee;color:var(--blue)!important" href="#marchio">leggi di più</a>
-  </div>
-</main>
+            <section class="c-homerivenditori o-section">
+            <div class="c-homerivenditori__container l-container l-innercontainer">
+                <div class="c-homerivenditori__header">
+                    <p class="c-homerivenditori__headertext">
+                        Ecco chi sono i ristoranti e rivenditori che si riforniscono da aziende con il marchio “IO SONO FVG”, contribuendo tutti assieme alla valorizzazione della filiera locale.
+                    </p>
+                    <a href="https://www.iosonofvg.it/rivenditori-e-ristoranti" class="o-button o-button--lightbg-primary">tutti i ristoranti e rivenditori</a>
+                </div>
+            </div>
+            <div class="c-homerivenditori__items o-cardscarousel js-cardscarousel owl-carousel owl-theme owl-loaded owl-drag">
+                
+                
+                
+            <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all; width: 4630px;"><div class="owl-item active" style="width: auto;"><span class="c-whitespace_smallcontainer"></span></div><div class="owl-item active" style="width: auto;"><span class="o-card c-homerivenditori__first">
+                    <span>166</span>
+                    <span>
+                        ristoranti e rivenditori dove trovare i prodotti “IO SONO FVG”
+                    </span>
+                </span></div><div class="owl-item active" style="width: auto;"><article class="o-card o-card--negozio">
+    <div class="o-card__title">VIVO FRIULI VENEZIA GIULIA -P.V. GORIZIA</div>
+    <div class="o-card__text">GORIZIA</div>
+</article></div><div class="owl-item active" style="width: auto;"><article class="o-card o-card--negozio">
+    <div class="o-card__title">Casa Mantova </div>
+    <div class="o-card__text">Barcis</div>
+</article></div><div class="owl-item active" style="width: auto;"><article class="o-card o-card--negozio">
+    <div class="o-card__title">VIVO FRIULI VENEZIA GIULIA -P.V. MONTEBELLUNA</div>
+    <div class="o-card__text">MONTEBELLUNA</div>
+</article></div><div class="owl-item active" style="width: auto;"><article class="o-card o-card--negozio">
+    <div class="o-card__title">PEZZETTA - EMPORIO DEI SAPORI</div>
+    <div class="o-card__text">SAN DANIELE DEL FRIULI</div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--negozio">
+    <div class="o-card__title">Alla Vecchia Marina </div>
+    <div class="o-card__text">Grado</div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--ristorante">
+    <div class="o-card__title">Agriturismo Casa Rossa ai Colli </div>
+    <div class="o-card__text">Ragogna</div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--ristorante">
+    <div class="o-card__title">Viroca s.r.l.</div>
+    <div class="o-card__text">Tricesimo</div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--ristorante">
+    <div class="o-card__title">ALTRO GUSTO CATERING &amp; FOOD CONSULTING DI BSF</div>
+    <div class="o-card__text">tarvisio</div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--ristorante">
+    <div class="o-card__title">Delizie a Go go </div>
+    <div class="o-card__text">Gorizia </div>
+</article></div><div class="owl-item" style="width: auto;"><article class="o-card o-card--ristorante">
+    <div class="o-card__title">Coldigrotta srl</div>
+    <div class="o-card__text">Farra d'Isonzo</div>
+</article></div><div class="owl-item" style="width: auto;"><span class="c-whitespace_smallcontainer"></span></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+        </section>
 
-<div class="stat">
-  <h3>1 centro con il marchio "IO SONO GULAG".</h3>
-  <p>Già 1 struttura si è impegnata nella comunicazione per ottenere il marchio "IO SONO GULAG".</p>
-  <p>Gestisci un centro che opera nel trattenimento in Friuli Venezia Giulia? Se ti impegni nella narrazione istituzionale, nel decoro esterno e nella gestione mediatica anche tu puoi avere il marchio "IO SONO GULAG".</p>
-  <div class="ctarow">
-    <a class="cta" href="#">TUTTI I CENTRI CON IL MARCHIO</a>
-    <a class="cta" href="#">RICHIEDI IL MARCHIO PER LA TUA STRUTTURA</a>
-  </div>
-</div>
 
-<main>
-  <div class="qr">
-    <div class="box"></div>
-    <p>Cerca il Marchio sui documenti. Inquadra il <b>MODULO C3</b> abbinato per scoprire, con qualche mese di ritardo, da dove vengono le persone e conoscere l'impegno della struttura verso la comunicazione.</p>
-  </div>
+    
 
-  <p class="center">Le pratiche marchiate:</p>
-  <a class="readmore center" style="display:block;text-align:center" href="#">tutte le pratiche</a>
-  <div class="list-row">
-    <div class="item"><div class="thumb">senza foto</div>Modulo C3/2026 — Sezione Est</div>
-    <div class="item"><div class="thumb">senza foto</div>Comunicato stampa n. 118</div>
-    <div class="item"><div class="thumb">senza foto</div>Rapporto trimestrale trasparenza</div>
-    <div class="item"><div class="thumb">senza foto</div>Nota interna diffusa per errore</div>
-    <div class="item"><div class="thumb">senza foto</div>Verbale ispezione garante</div>
-  </div>
-  <a class="readmore center" style="display:block;text-align:center" href="#">scopri tutte le 3.204 pratiche</a>
+    
 
-  <p id="enti">Ecco chi sono gli enti e i fornitori che si riforniscono di notizie dalle strutture con il marchio "IO SONO GULAG", contribuendo tutti assieme alla visibilità del perimetro regionale.</p>
-  <a class="readmore center" style="display:block;text-align:center" href="#">tutti gli enti e fornitori</a>
 
-  <div class="section-title" style="text-align:center;font-weight:normal">166 enti e fornitori dove trovare le pratiche "IO SONO GULAG"</div>
-  <table class="reg">
-    <tr><td>Ufficio stampa regionale</td><td class="loc">Trieste</td></tr>
-    <tr><td>Garante nazionale dei diritti delle persone private della libertà</td><td class="loc">Gorizia</td></tr>
-    <tr><td>Osservatorio indipendente frontiera</td><td class="loc">Gradisca d'Isonzo</td></tr>
-    <tr><td>Studio legale d'ufficio</td><td class="loc">Udine</td></tr>
-    <tr><td>Redazione cronaca locale</td><td class="loc">Monfalcone</td></tr>
-    <tr><td>Comitato cittadino permanente</td><td class="loc">Gradisca d'Isonzo</td></tr>
-  </table>
-</main>
 
-<footer>
-  <div class="logo" style="justify-content:center;display:block;margin-bottom:1rem">IO SONO <b>GULAG</b></div>
-  <nav class="fnav">
-    <a href="#">Home</a><a href="#marchio">Il marchio</a><a href="#centri">Centri</a>
-    <a href="#trattenuti">Trattenuti</a><a href="#enti">Enti &amp; Fornitori</a>
-    <a href="#branding">Branding</a><a href="#contatti">Contatti</a>
-  </nav>
-  <div class="partners">
-    <span>REGIONE FVG</span><span>UFFICIO COMUNICAZIONE</span><span>GARANTE (parodia)</span>
-  </div>
-  <p class="fine" id="contatti">© 2026 IOSONOFRIULIVENEZIAGULAG — parodia satirica indipendente, nessun rapporto con enti reali.<br>
-  Nessuna foto di persone reali è stata utilizzata in questa pagina. — privacy — cookie — condizioni</p>
-</footer>
 
-</body>
-</html>
+
+
+
+    
+
+    <footer class="c-footer o-section">
+        
+        <nav class="c-footermenu">
+            <div class="l-container">
+                <div class="c-footermenu__container ">
+                    <img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo_245C.svg" alt="IO SONO FVG" class="c-footermenu__logo">
+                    <ul class="c-footermenu__menu">
+  <li class="idx_1_1 isLeaf">
+    <a href="https://www.iosonofvg.it/home">Home</a>
+  </li>
+  <li class="idx_1_2 isLeaf">
+    <a href="https://www.iosonofvg.it/il-marchio">Il marchio</a>
+  </li>
+  <li class="idx_1_3 isLeaf">
+    <a href="https://www.iosonofvg.it/aziende">Aziende</a>
+  </li>
+  <li class="idx_1_4 isLeaf">
+    <a href="https://www.iosonofvg.it/prodotti">Prodotti</a>
+  </li>
+  <li class="idx_1_5 isLeaf">
+    <a href="https://www.iosonofvg.it/rivenditori-e-ristoranti">Ristoranti &amp; Rivenditori</a>
+  </li>
+  <li class="idx_1_6 isLeaf">
+    <a href="https://www.iosonofvg.it/branding">Branding</a>
+  </li>
+  <li class="idx_1_7 isLeaf">
+    <a href="https://www.iosonofvg.it/contatti">Contatti</a>
+  </li>
+  <li class="idx_1_8 isLeaf">
+    <a href="https://www.iosonofvg.it/it/18544/iniziative">Iniziative</a>
+  </li>
+  <li class="idx_1_9 isLeaf">
+    <a href="https://www.iosonofvg.it/shop-per-aziende-io-sono-fvg">Shop per aziende</a>
+  </li>
+</ul>
+                </div>
+                <div class="c-footerlogos">
+                    <a href="https://www.fabfvg.it/" target="_blank"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-fab-2023_245C.svg" alt="Fondazione Agrifood &amp; Bioeconomy" height="40"></a>
+                    <a href="https://www.agrifoodfvg.it/home" target="_blank"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-agrifood-2023_245C.svg" alt="Agrifood FVG"></a>
+                    <a href="https://www.regione.fvg.it/" target="_blank"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-fvg_245C.svg" alt="Regione autonoma Friuli Venezia Giulia"></a>
+                    <a href="http://www.tastefvg.it/" target="_blank"><img src="Io%20sono%20Friuli%20Venezia%20Giulia_files/logo-testuale-quadrato_245C.svg" alt="taste fvg"></a>
+                </div>
+                <div class="clearfloat"></div>
+            </div>
+        </nav>
+        <div class="c-footercopyright">
+            <div class="l-container c-footercopyright__container l-innercontainer">
+                <div class="c-footercopyright__text">
+                    <strong>© 2026 IOSONOFRIULIVENEZIAGIULIA</strong>   -
+                    Tutti i diritti riservati   -
+                    <a href="https://www.iosonofvg.it/privacy" target="_blank">privacy</a>   -
+                    <a href="https://www.iosonofvg.it/cookie-policy" target="_blank">cookie</a>   -
+                    <a href="javascript: Cookiebot.renew()">modifica consensi</a>   -
+                    <a href="https://www.iosonofvg.it/condizioni-generali-di-vendita" target="_blank">condizioni di vendita</a>
+                </div>
+                <a href="https://www.ikon.it/" class="c-footercopyright__credits" target="_blank">POWERED BY <span>IKON</span></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    
+
+
+    
+    <div id="fb-root"></div>
+    <!-- javascript at bottom -->
+    
+    <!-- javascripts with production/development versions -->
+    <script src="Io%20sono%20Friuli%20Venezia%20Giulia_files/js_portal_245C"></script>
+
+    <script type="text/javascript" src="Io%20sono%20Friuli%20Venezia%20Giulia_files/markerclusterer@2.6.2.min_245C.js"></script>
+    <!-- site javascripts end -->
+    
+    <script type="text/javascript">
+        /*<![CDATA[*/
+
+        $(document).ready(function () {
+            try {
+                ajaxLoader(500, '/Content/Images/loader_tondo.png', 48, { showOverlay: true });
+            } catch (e) {
+                //
+            }
+        });
+
+        /*]]>*/
+    </script>
+    
+
+        <script type="text/javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () { setTimeout(function () { $.ajax('/lazylogin/hitlog?ResourceCode=15975&amp;ActionCode=1&amp;ActionSubCode=0', { cache: false, data: '', dataType: 'json' }); }, 100); });
+        /*]]>*/
+    </script><noscript></noscript>
+
+    
+
+
+    <span id="genericErrorText" hidden="hidden">Si è verificato un problema. Si prega di riprovare più tardi</span>
+
+
+<iframe class="CybotCookiebotHiddenIframe" name="__uspapiLocator" tabindex="-1" role="presentation" aria-hidden="true" title="Blank"></iframe><iframe class="CybotCookiebotOffscreenIframe" tabindex="-1" role="presentation" aria-hidden="true" title="Blank" src="Io%20sono%20Friuli%20Venezia%20Giulia_files/bc-v4_245C.html"></iframe></body></html>
